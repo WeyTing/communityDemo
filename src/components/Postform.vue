@@ -1,6 +1,13 @@
 <template>
   <div class="bg-white p-6 rounded-xl shadow-md w-full sticky top-4">
-    <h2 class="text-xl font-semibold mb-4 text-gray-800">發表貼文</h2>
+    <div class="flex items-center gap-3 mb-4">
+      <img 
+        :src="currentUser?.photoURL || defaultAvatar" 
+        alt="avatar"
+        class="w-10 h-10 rounded-full object-cover border border-gray-200"
+      />
+      <h2 class="text-xl font-semibold text-gray-800">發表貼文</h2>
+    </div>
 
     <form @submit.prevent="submitPost">
       <textarea
@@ -29,6 +36,9 @@ import { onAuthStateChanged } from "firebase/auth";
 const content = ref("");
 const currentUser = ref(null);
 
+// 預設大頭貼
+const defaultAvatar = `https://ui-avatars.com/api/?name=User&background=random`;
+
 // 取得目前登入的使用者
 onAuthStateChanged(auth, (user) => {
   currentUser.value = user;
@@ -51,6 +61,8 @@ const submitPost = async () => {
       createdAt: serverTimestamp(),
       uid: currentUser.value.uid,
       email: currentUser.value.email,
+      photoURL: currentUser.value.photoURL || null,
+      displayName: currentUser.value.displayName || null,
     });
 
     alert("貼文已發佈");
