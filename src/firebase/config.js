@@ -8,12 +8,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBgBarVuNnHUf3WIop6xV1PZyL9SN-Pmao",
-  authDomain: "minisocial-446f6.firebaseapp.com",
-  projectId: "minisocial-446f6",
-  storageBucket: "minisocial-446f6.firebasestorage.app",
-  messagingSenderId: "980726336207",
-  appId: "1:980726336207:web:d5b621b81ce60b902445ba",
+
 };
 
 // Initialize Firebase
